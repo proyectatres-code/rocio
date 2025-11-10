@@ -27,7 +27,7 @@
   <meta property="og:image:secure_url" content="https://rocio-tenorio.vercel.app/imagenes/card-preview.v2.jpg">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
-  <meta property="og:image:type" content="images/jpeg">
+  <meta property="og:image:type" content="image/jpeg">
   <meta property="og:image:alt" content="Tarjeta digital de Rocío del Pilar Tenorio">
 
   <!-- Twitter Cards -->
@@ -45,14 +45,18 @@
       --ink:#fff;
       --accent:#7cc0ff;
       --divider:linear-gradient(180deg,rgba(255,255,255,.28),rgba(0,0,0,.40),rgba(255,255,255,.22));
-      --link:#0a66ff;
+      --link:#0a66ff;         /* no se usa en los datos, usamos #0066cc para igualar al origen */
       --link-hover:#0751cc;
     }
     html,body{min-height:100%}
     body{
-      font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif;
+      /* fuentes del sistema (como en tu versión anterior) */
+      font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
       background:linear-gradient(135deg,#153d6a 0%,#0a243f 100%);
       color:#111; overflow-x:hidden; font-size:18px;
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      text-rendering:optimizeLegibility;
     }
 
     /* ===== Splash (animación suave, mismo tamaño de logo) ===== */
@@ -108,8 +112,21 @@
       display:flex;align-items:center;justify-content:center;
     }
     .profile-photo img{width:100%;height:100%;object-fit:cover;object-position:center}
-    .name{color:#fff;font-size:clamp(24px,5vw,32px);line-height:1.15;margin-bottom:8px;font-weight:700}
-    .title{color:rgba(255,255,255,.92);font-size:clamp(14px,2.6vw,18px);margin-bottom:22px;font-weight:500}
+
+    .name{
+      color:#fff;
+      font-size:clamp(24px,5vw,32px);
+      line-height:1.15;
+      margin-bottom:8px;
+      font-weight:700;              /* como antes */
+      letter-spacing:-0.2px;        /* micro-ajuste como en el archivo anterior */
+    }
+    .title{
+      color:rgba(255,255,255,.92);
+      font-size:clamp(14px,2.6vw,18px);
+      margin-bottom:22px;
+      font-weight:500;              /* como antes */
+    }
 
     /* ===== Botonera superior ===== */
     .action-wrap{padding:0 16px}
@@ -154,18 +171,38 @@
       width:42px;height:42px;background:#f0f7ff;border-radius:50%;
       display:flex;align-items:center;justify-content:center;color:#0f3156;flex:0 0 42px;margin-top:2px
     }
-    .contact-details h3{font-size:clamp(14px,3vw,18px);color:#666;margin-bottom:4px;text-transform:uppercase;font-weight:400}
-    .contact-details p{font-size:clamp(15px,3.4vw,17px);color:#333;font-weight:500;overflow-wrap:anywhere}
+    .contact-details h3{
+      font-size:clamp(14px,3vw,18px);
+      color:#666;margin-bottom:4px;text-transform:uppercase;
+      font-weight:400;               /* como antes */
+      letter-spacing:.4px;           /* micro-ajuste como antes */
+    }
+    .contact-details p{
+      font-size:clamp(15px,3.4vw,17px);
+      color:#333;font-weight:500;    /* como antes */
+      overflow-wrap:anywhere;
+      word-break:break-word;
+      line-height:1.25;
+    }
 
-    /* Links azules desde el inicio, sin subrayado (botón Ubicación en blanco) */
-    .clickable-link{
-      color:var(--link);
+    /* === Igualar EXACTO al estilo del “dato Email” del código origen === */
+    /* Los links de datos (<a>) ahora se ven idénticos a los <p> del origen */
+    .contact-details a,
+    .contact-details .clickable-link{
+      font-size:clamp(15px,3.4vw,17px);
+      line-height:1.25;
+      font-weight:500;
+      color:#0066cc;                 /* azul del origen */
       text-decoration:none;
-      cursor:pointer;
       display:inline-block;
+      overflow-wrap:anywhere;
+      word-break:break-word;
       transition:color .15s ease;
     }
-    .clickable-link:hover{ color:var(--link-hover) }
+    .contact-details a:hover,
+    .contact-details .clickable-link:hover{
+      color:#0751cc;                 /* leve realce al pasar el mouse */
+    }
 
     /* ===== Redes ===== */
     .social-section{
