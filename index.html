@@ -32,7 +32,7 @@
 
   <!-- Twitter Cards -->
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Tarjeta Digital – Rocío del Pilar Tenorio">
+  <meta name="twitter:title" content="Tarjeta – Rocío del Pilar Tenorio">
   <meta name="twitter:description" content="Gerente de Contabilidad y Finanzas en Ashimori Industria de México. Contáctame desde mi tarjeta digital.">
   <meta name="twitter:image" content="https://rocio-tenorio.vercel.app/imagenes/card-preview.v3.jpg">
 
@@ -58,7 +58,7 @@
       text-rendering:optimizeLegibility;
     }
 
-    /* ===== Splash (animación suave, mismo tamaño de logo) ===== */
+    /* ===== Splash (animación suave) ===== */
     #splash{
       position:fixed; inset:0; z-index:9999;
       display:flex; align-items:center; justify-content:center;
@@ -73,13 +73,14 @@
       will-change: transform, opacity;
       animation:logoAppear 1s ease-out .2s forwards;
     }
+    /* LOGO más grande en móvil, sin distorsión */
     #splash-logo img{
-      max-width:78vw;
-      max-height:40vh;
+      max-width:92vw;
+      max-height:55vh;
       object-fit:contain;
     }
     @media (min-width:768px){
-      #splash-logo img{ max-width:40vw; max-height:46vh; }
+      #splash-logo img{ max-width:42vw; max-height:50vh; }
     }
     @keyframes logoAppear{
       0%   { opacity:0; transform:translateZ(0) scale(.72); }
@@ -251,6 +252,7 @@
 
           <span class="divider" aria-hidden="true"></span>
 
+          <!-- Botón Compartir con el MISMO SVG original -->
           <button class="icon-btn" type="button" onclick="shareCard()" aria-label="Compartir" title="Compartir">
             <svg viewBox="0 0 24 24" aria-hidden="true">
               <path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7a3.3 3.3 0 0 0 0-1.39l7.02-4.11A2.99 2.99 0 0 0 18 7.91c1.66 0 3-1.34 3-3s-1.34-3-3-3-3 1.34-3 3c0 .23.03.45.08.66L8.05 9.78A2.99 2.99 0 0 0 6 9c-1.66 0-3 1.34-3 3s1.34 3 3 3c.89 0 1.69-.39 2.25-1l7.03 4.11c-.05.2-.08.42-.08.64 0 1.66 1.34 3 3 3s3-1.34 3-3-1.34-3-3-3z"/>
