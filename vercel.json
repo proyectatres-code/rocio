@@ -1,12 +1,11 @@
 {
+  "redirects": [
+    { "source": "/", "destination": "/index.html", "permanent": true }
+  ],
+  "rewrites": [
+    { "source": "/r", "destination": "/index.html" }
+  ],
   "headers": [
-    {
-      "source": "/",
-      "headers": [
-        { "key": "Cache-Control", "value": "no-store, must-revalidate" },
-        { "key": "Accept-Ranges", "value": "none" }
-      ]
-    },
     {
       "source": "/index.html",
       "headers": [
