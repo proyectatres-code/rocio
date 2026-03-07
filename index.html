@@ -5,6 +5,15 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="robots" content="index, follow" />
   <meta name="theme-color" content="#0a243f" />
+  <link rel="manifest" href="manifest.json">
+
+  <!-- Icono pantalla de inicio (iOS + Android) -->
+  <link rel="apple-touch-icon" href="imagenes/logo-ashimori-inicio.jpg">
+  <link rel="icon" type="image/jpeg" sizes="192x192" href="imagenes/logo-ashimori-inicio.jpg">
+  <link rel="icon" type="image/jpeg" sizes="512x512" href="imagenes/logo-ashimori-inicio.jpg">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="Rocío Tenorio">
 
   <!-- =========================================================
        SEO / Open Graph — ACTUALIZA solo si cambia el dominio/imagen
@@ -136,12 +145,12 @@
     .divider{width:1px;margin:6px 6px;background:var(--divider);opacity:.9;pointer-events:none}
     .action-btn{
       flex:1 1 0;border:0;cursor:pointer;background:transparent;color:var(--ink);
-      padding:clamp(10px,3vw,14px) 10px;border-radius:12px;
-      font-size:clamp(12px,3.2vw,14px);font-weight:800;text-transform:uppercase;
-      display:flex;align-items:center;justify-content:center;gap:8px;text-decoration:none;
+      padding:clamp(8px,2vw,12px) 4px;border-radius:12px;
+      font-size:clamp(10px,2.6vw,12px);font-weight:800;text-transform:uppercase;
+      display:flex;align-items:center;justify-content:center;gap:5px;text-decoration:none;
       min-height:46px;transition:box-shadow .15s ease,background .15s ease,transform .05s ease
     }
-    .action-btn svg{width:18px;height:18px;fill:currentColor}
+    .action-btn svg{width:15px;height:15px;flex-shrink:0;fill:currentColor}
     .action-btn:hover{background:rgba(255,255,255,.10)}
     .action-btn:active{transform:translateY(1px);background:rgba(255,255,255,.12)}
     .action-btn--white{color:#fff;text-decoration:none}
@@ -214,6 +223,53 @@
       background:#333;color:#fff;padding:12px 24px;border-radius:25px;font-size:14px;z-index:1000;transition:transform .3s ease
     }
     .toast.show{transform:translateX(-50%) translateY(0)}
+    /* ===== QR Modal ===== */
+    .qr-overlay{
+      position:fixed;inset:0;z-index:8000;
+      background:rgba(0,0,0,0);
+      display:flex;align-items:center;justify-content:center;
+      padding:24px;
+      pointer-events:none;
+      transition:background .35s ease;
+    }
+    .qr-overlay.active{
+      background:rgba(0,0,0,.75);
+      pointer-events:all;
+      backdrop-filter:blur(6px);
+    }
+    .qr-card{
+      background:linear-gradient(160deg,#1a3a6a 0%,#0a243f 100%);
+      border:1px solid rgba(255,255,255,0.15);
+      border-radius:24px;
+      padding:28px 24px 22px;
+      width:min(88vw,340px);
+      box-shadow:0 24px 60px rgba(0,0,0,.6), 0 0 0 1px rgba(255,255,255,0.05);
+      display:flex;flex-direction:column;align-items:center;gap:16px;
+      opacity:0;transform:translateY(32px) scale(.94);
+      transition:opacity .38s cubic-bezier(.22,1,.36,1), transform .38s cubic-bezier(.22,1,.36,1);
+    }
+    .qr-overlay.active .qr-card{
+      opacity:1;transform:translateY(0) scale(1);
+    }
+    .qr-label{
+      font-size:13px;font-weight:700;letter-spacing:1.2px;text-transform:uppercase;
+      color:rgba(255,255,255,0.55);
+    }
+    .qr-img-wrap{
+      width:100%;border-radius:14px;overflow:hidden;
+      border:1.5px solid rgba(255,255,255,0.15);
+      box-shadow:0 0 20px rgba(0,0,0,0.3);
+    }
+    .qr-img-wrap img{width:100%;height:auto;display:block;}
+    .qr-close{
+      margin-top:4px;background:rgba(255,255,255,0.10);
+      border:1.5px solid rgba(255,255,255,0.25);
+      color:#fff;border-radius:50px;padding:9px 32px;
+      font-size:13px;font-weight:700;letter-spacing:.8px;text-transform:uppercase;
+      cursor:pointer;transition:background .15s ease, transform .1s ease;
+    }
+    .qr-close:hover{background:rgba(255,255,255,0.20);}
+    .qr-close:active{transform:scale(.97);}
   </style>
 </head>
 <body>
@@ -240,6 +296,13 @@
             <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/></svg>
             Guardar
           </a>
+
+          <span class="divider" aria-hidden="true"></span>
+
+          <button class="action-btn action-btn--white" type="button" onclick="openQR()">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 3h7v7H3zm1 1v5h5V4zm1 1h3v3H5zm8-2h7v7h-7zm1 1v5h5V4zm1 1h3v3h-3zM3 13h7v7H3zm1 1v5h5v-5zm1 1h3v3H5zm8 0h2v2h-2zm0 4h2v2h-2zm-2-4h2v2h-2zm4 0h2v2h-2zm2 2h2v2h-2zm-4 0h2v2h-2zm0 2h2v2h-2zm2 0h2v2h-2z"/></svg>
+            Ver QR
+          </button>
 
           <span class="divider" aria-hidden="true"></span>
 
@@ -280,7 +343,7 @@
         </div>
         <div class="contact-details">
           <h3>Email</h3>
-          <a id="email" class="clickable-link" href="mailto:rocio.tenorio@ashimorimexico.com?subject=Contacto%20desde%20tarjeta%20digital&body=Hola%20Roc%C3%ADo%20del%20Pilar%20Tenorio," onclick="showToast('Abriendo aplicación de email...')">rocio.tenorio@ashimorimexico.com</a>
+          <a id="email" class="clickable-link" href="mailto:rtenorio@ashimori.com.mx" onclick="showToast('Abriendo aplicación de email...')">rtenorio@ashimori.com.mx</a>
         </div>
       </div>
 
@@ -336,11 +399,33 @@
     </div>
   </div>
 
+  <!-- QR Modal -->
+  <div id="qrOverlay" class="qr-overlay" role="dialog" aria-modal="true" aria-label="Código QR" onclick="handleOverlayClick(event)">
+    <div class="qr-card">
+      <p class="qr-label">Escanea para contactarme</p>
+      <div class="qr-img-wrap">
+        <img src="imagenes/QR ROCIO.png" alt="Código QR Rocío del Pilar Tenorio">
+      </div>
+      <button class="qr-close" onclick="closeQR()">Cerrar</button>
+    </div>
+  </div>
+
   <!-- Toast -->
   <div id="toast" class="toast" role="status" aria-live="polite"></div>
 
   <script>
-    /* Toast pequeño reutilizable */
+    function openQR(){
+      document.getElementById('qrOverlay').classList.add('active');
+      document.body.style.overflow='hidden';
+    }
+    function closeQR(){
+      document.getElementById('qrOverlay').classList.remove('active');
+      document.body.style.overflow='';
+    }
+    function handleOverlayClick(e){
+      if(e.target === document.getElementById('qrOverlay')) closeQR();
+    }
+
     function showToast(msg){
       const t = document.getElementById('toast');
       t.textContent = msg;
@@ -349,21 +434,17 @@
       return true;
     }
 
-    /* Compartir: usa siempre la ruta limpia /r */
     function shareCard(){
       const url = 'https://rocio-tenorio.vercel.app/r';
       const shareData = { title: document.title, text: document.title, url };
-
       if (navigator.share) {
         navigator.share(shareData)
           .then(() => showToast('Enlace compartido exitosamente'))
           .catch(() => {});
-      } else if (navigator.clipboard && navigator.clipboard.writeText) {
+      } else {
         navigator.clipboard.writeText(url)
           .then(() => showToast('Enlace copiado al portapapeles'))
-          .catch(() => alert('Copia este enlace: ' + url));
-      } else {
-        alert('Copia este enlace: ' + url);
+          .catch(() => showToast('Copia el enlace: ' + url));
       }
     }
   </script>
