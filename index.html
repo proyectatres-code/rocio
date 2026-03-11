@@ -343,7 +343,7 @@
         </div>
         <div class="contact-details">
           <h3>Email</h3>
-          <a id="email" class="clickable-link" href="mailto:rtenorio@ashimori.com.mx" onclick="showToast('Abriendo aplicación de email...')">rtenorio@ashimori.com.mx</a>
+          <a id="email" class="clickable-link" href="/cdn-cgi/l/email-protection#97e5e3f2f9f8e5fef8d7f6e4fffefaf8e5feb9f4f8fab9faef" onclick="showToast('Abriendo aplicación de email...')"><span class="__cf_email__" data-cfemail="a6d4d2c3c8c9d4cfc9e6c7d5cecfcbc9d4cf88c5c9cb88cbde">[email&#160;protected]</span></a>
         </div>
       </div>
 
@@ -397,6 +397,12 @@
         </a>
       </div>
     </div>
+
+    <!-- Footer sutil -->
+    <div style="text-align:center;padding:20px 20px 28px;font-size:12px;letter-spacing:0.5px;color:rgba(255,255,255,0.75);">
+      <div>Una tarjeta <strong style="color:#fff;">EcoConecta®</strong></div>
+      <div>por <a href="https://wa.me/524778811195?text=Hola%2C%20me%20interesa%20tener%20mi%20tarjeta%20digital" target="_blank" rel="noopener" style="color:#00c8e8;text-decoration:none;font-weight:600;letter-spacing:1px;">DARAN™ STUDIO</a></div>
+    </div>
   </div>
 
   <!-- QR Modal -->
@@ -413,7 +419,7 @@
   <!-- Toast -->
   <div id="toast" class="toast" role="status" aria-live="polite"></div>
 
-  <script>
+  <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
     function openQR(){
       document.getElementById('qrOverlay').classList.add('active');
       document.body.style.overflow='hidden';
@@ -440,13 +446,4 @@
       if (navigator.share) {
         navigator.share(shareData)
           .then(() => showToast('Enlace compartido exitosamente'))
-          .catch(() => {});
-      } else {
-        navigator.clipboard.writeText(url)
-          .then(() => showToast('Enlace copiado al portapapeles'))
-          .catch(() => showToast('Copia el enlace: ' + url));
-      }
-    }
-  </script>
-</body>
-</html>
+   
